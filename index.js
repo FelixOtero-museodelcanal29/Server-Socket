@@ -28,6 +28,10 @@ io.on("connection", (socket) => {
   video(socket);
   Home(socket);
   BaseMilitar(socket);
+  Portal(socket);
+  Idioma(socket);
+  Slider(socket);//SLIDER IMAGEN MAPA
+  SliderImg(socket)//SLIDER IMG global
 });
 
 io.on("disconnected", () => {
@@ -56,3 +60,33 @@ function BaseMilitar(socket){
      io.emit('dataMilitar',payload);
     });
 }
+
+
+function Portal(socket){
+  socket.on("portal",(payload=String)=>{
+    //console.log("portal: ", payload);
+     io.emit('dataPortal',payload);
+    });
+}
+
+function Idioma(socket){
+  socket.on("langPost",(payload=String)=>{
+   // console.log(payload);
+    io.emit('langGet',payload);
+  })
+}
+
+function Slider(socket){
+  socket.on("slidenIn",(payload=String)=>{
+    //console.log("Slide Img: ", payload);
+    io.emit('slideOut',payload);
+  })
+}
+
+function SliderImg(socket){
+  socket.on("img-In",(payload=String)=>{
+  //   console.log("Slide Img: ", payload);
+    io.emit('img-Out',payload);
+  })
+}
+
